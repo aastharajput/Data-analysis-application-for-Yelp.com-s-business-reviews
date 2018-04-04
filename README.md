@@ -20,37 +20,29 @@ I have further used **Faceted Search** for narrowing down the search for busines
 In this application, the user can filter the search results using available business attributes (i.e. facets) such a main category(ies), sub-category(ies), business attributes, days of the week, and hours of a day. Each time the user clicks on a facet value; the set of results is reduced to only the items that have that value. Additional clicks continue to narrow down the search—the previous facet values are remembered and applied again.
 
 ### Project Screenshots
+
 ### Getting Started
-#### Built With
-This application is built with
-* Java
-* Oracle 11g Database
 
-#### Setting development environment
+#### Prerequisites
 
-Setting development environment requires following to be installed:
-* Install Oracle 11g
-* Install Java 8 JDK
+Following must be installed in order to set up the development environment
+* [Install Oracle Database 11gR2](https://docs.oracle.com/cd/E25178_01/server.1111/e10897/install.htm)
+* [Install Java 8 JDK](https://docs.oracle.com/javase/8/docs/technotes/guides/install/windows_jdk_install.html)
 
-### Usages
 #### Compiling
 As this application depends on two external jar (already included in this repository), compilation of application is divided into two parts:
-1. Compile "populate.java" to be used for parsing, cleaning and storing dataset into database
+##### Setting up database
+Run "**createDb.sql**" script using Oracle SQL Developer to create and setup database tables.
+Compile "**populate.java**" to be used for parsing, cleaning and storing dataset into database
 ```sh
 $ javac -classpath ./:ojdbc6.jar:json-simple-1.1.jar populate.java
 ```
-2. Compile "GUI.java" 
-```sh
-$ javac -classpath ./:ojdbc6.jar:json-simple-1.1.jar GUI.java
-```
-
-#### Preprocessing
-
-This application requires Oracle Database to be initialized and requires Yelp dataset updated in the database. To populate Yelp dataset
+ To populate Yelp dataset
 ```sh
 $ java -classpath ./:ojdbc6.jar:json-simple-1.1.jar populate yelp_business.json yelp_review.json yelp_checkin.json yelp_user.json");
 ```
-I have included sql script "createDb.sql" to create these tables and establish relation between the table. Populate.java will populate following tables in database:
+
+Populate.java will populate following tables in database:
 * Business
 * Business Hours
 * Business Main Category
@@ -60,15 +52,37 @@ I have included sql script "createDb.sql" to create these tables and establish r
 * Yelp Users
 * Yelp Reviews
 
-###### ERD Diagram for Database
 
-#### Running The Application
+#### Compiling and Running the Application
+```sh
+$ javac -classpath ./:ojdbc6.jar:json-simple-1.1.jar GUI.java
+```
 
 Tu run application:
 ```sh
 $ java -classpath ./:ojdc6.jar:json-simple-1.1.jar GUI
 ```
 
-### Sample Queries
+### License
 
+MIT License
 
+Copyright (c) 2018 Aastha Rajput
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
